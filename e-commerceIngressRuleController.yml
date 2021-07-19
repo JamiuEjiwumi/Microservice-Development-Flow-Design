@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: e-commerce-platform-ingress-controller
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"
+    nginx.ingress.kubernetes.io/rewrite-target: /$2
+spec:
+  rules:
+    - http:
+        paths:
+          - backend:
+              serviceName: customerservice
+              servicePort: 80
+            path: /customerservice(/|$)(.*)
+
+          - backend:
+              serviceName: productservice
+              servicePort: 80
+            path: /productservice(/|$)(.*)
+
+          - backend:
+              serviceName: order
+              servicePort: 80
+            path: /order(/|$)(.*)
+            
+          - backend:
+              serviceName: payment
+              servicePort: 80
+            path: /payment(/|$)(.*)

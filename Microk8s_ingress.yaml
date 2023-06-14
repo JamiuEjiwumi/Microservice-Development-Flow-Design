@@ -1,0 +1,102 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  namespace: staging
+  name: hello-kubernetes-ingress
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    cert-manager.io/cluster-issuer: "letsencrypt-prod"
+    nginx.ingress.kubernetes.io/proxy-body-size: 200m
+
+spec:
+  tls:
+    - hosts:
+      # - antmedia.lafia.io
+      - lafia-cms.lafia.io
+      - lafia-backend.lafia.io
+      - suresalama-cms.lafia.io
+      - suresalama-backend.lafia.io
+      # - suresalama-frontend.lafia.io
+      - fhir-server-service.lafia.io
+      secretName: letsencrypt-prod
+  rules:
+  - host: "lafia-backend.lafia.io"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: lafia-backend
+            port:
+              number: 9500
+  - host: "openimis-mediator.lafia.io"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: openimis-mediator
+            port:
+              number: 8000
+  # - host: "antmedia.lafia.io"
+  #   http:
+  #     paths:
+  #     - pathType: Prefix
+  #       path: "/"
+  #       backend:
+  #         service:
+  #           name: ant-media-server
+  #           port:
+  #             number: 5080
+  - host: "lafia-cms.lafia.io"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: lafiacms
+            port:
+              number: 1337
+  - host: "suresalama-cms.lafia.io"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: suresalama-cms
+            port:
+              number: 1337
+  - host: "suresalama-backend.lafia.io"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: suresalama-backend
+            port:
+              number: 5000
+  # - host: "suresalama-frontend.lafia.io"
+  #   http:
+  #     paths:
+  #     - pathType: Prefix
+  #       path: "/"
+  #       backend:
+  #         service:
+  #           name: suresalama-frontend
+  #           port:
+  #             number: 3000
+  - host: "fhir-server-service.lafia.io"
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: fhir-server-service
+            port:
+              number: 8080

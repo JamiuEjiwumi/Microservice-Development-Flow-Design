@@ -1,0 +1,25 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: staging
+  name: suresalama-configmap
+data:
+  SURESALAMA_CONTRACT_ADDRESS: '0xaB7661F698b4E7970d23dB92Ba5458A23EF2f5f1'
+  CONTROLLER_CONTRACT_ADDRESS: '0xeDa5162ededF14D535e1Bcd6030875672070B9e5'
+  DATABASE_URL: postgresql://doadmin:AVNS_xia0PLucZdQXoLIN9n3@db-postgresql-nyc1-12259-do-user-3558509-0.b.db.ondigitalocean.com:25060/suresalamabkenddb?schema=public&sslmode=require&sslcert=db-ca.pem
+  PROVIDER_URL: https://polygon-mumbai.g.alchemy.com/v2/Ne2fC11c9GzB1-zezX431lEJa0v6bqD9
+  PREMIUM_CURRENCY: USD
+  BASE_URL: http://suresalama-backend.dev.io
+  CMS_URL: 'http://suresalama-cms:1337/api/content'
+  DEFAULT_LANG: en
+  OAUTH_GOOGLE_REDIRECT_URL: '${BASE_URL}/auth/google/redirect'
+  WALLET_PK: 'd96151076f75de9692439fc29c741cf03435407eb0ba2ba3b7c2e1ee3db499c4'
+  IS_TESTNET: 'true'
+  GAS_ESTIMATOR_TESTNET: 'https://gasstation-mumbai.matic.today/v2'
+  GAS_ESTIMATOR_MAINNET: 'https://gasstation-mainnet.matic.network/v2'
+  PUBLISH_QUEUE: 'createResources'
+  SUBSCRIBE_QUEUE: 'createResources'
+  RABBITMQ_CONNECTION: 'amqps://vbcuzfzy:O5UgOBtGIbS--8hlvO6RfwDrXu4K4A_R@woodpecker.rmq.cloudamqp.com/vbcuzfzy'
+  REDIS_HOST: 'redis-13937.c16.us-east-1-2.ec2.cloud.redislabs.com'
+  REDIS_PORT: '13937'
+  REDIS_PASSWORD: 'sCUR17QJ3LK2Vo8dTkURaNaTLrklw0zn'
